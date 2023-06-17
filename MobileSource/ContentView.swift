@@ -40,52 +40,58 @@ struct ContentView: View {
     @ObservedObject var batteryInfo = BatteryInfo()
     let telephonyInfo = CTTelephonyNetworkInfo()
     var body: some View {
-        
         VStack {
-            List {
-                Section{
-                    //Text("OS: \(batteryInfo.systembuildName)")
-                    Text("\(batteryInfo.systembuildName) \(batteryInfo.systemVersion)")
-                    Text("モデル: \(batteryInfo.model)")
-//                    Text(currentCarrierName)
-                    Text("UUID:  \(batteryInfo.identifierForVendor)")
 
+                List {
+                    Section{
+                        //Text("OS: \(batteryInfo.systembuildName)")
+                        Text("\(batteryInfo.systembuildName) \(batteryInfo.systemVersion)")
+                        //Text("モデル: \(batteryInfo.model)")
+                        
+                    }
+                header: {
+                    Text("システム")
                 }
-            header: {
-                Text("システム")
-            }
-            footer: {
-                Text("最新バージョンの iOS／iPadOS ソフトウェアにアップグレードすると、最新の機能やセキュリティアップデートを利用できるほか、バグも修正されます。デバイスまたは国／地域によっては、利用できない機能もあります。バッテリーとシステムのパフォーマンスは、ネットワークの状況や個々の使用条件など、さまざまな要因に左右されるため、実際の結果は異なる場合があります。")
-            }
-                
-//                Section{
-//                    Text(currentCarrierName)
-//                }
-//            header: {
-//                Text("通信キャリア")
-//            }
-                
-                Section{
-                    //Text(" \(Int(batteryInfo.batteryLevel * 100))%")
-                    Text(isCharging ? "充電中" : "充電していません")
+                footer: {
+                    Text("最新バージョンの iOS／iPadOS ソフトウェアにアップグレードすると、最新の機能やセキュリティアップデートを利用できるほか、バグも修正されます。デバイスまたは国／地域によっては、利用できない機能もあります。バッテリーとシステムのパフォーマンスは、ネットワークの状況や個々の使用条件など、さまざまな要因に左右されるため、実際の結果は異なる場合があります。")
                 }
-            header: {
-                Text("充電状況")
-            }
-
-                Section{
-                    Text(" \(Int(batteryInfo.batteryLevel * 100))%")
-                    //Text(isCharging ? "充電中" : "充電していません")
+                        Section{
+                            Text("\(batteryInfo.identifierForVendor)")
+                            
+                        }
+                    header: {
+                        Text("UUID")
+                    }
+                    
+                    
+                    //                Section{
+                    //                    Text(currentCarrierName)
+                    //                }
+                    //            header: {
+                    //                Text("通信キャリア")
+                    //            }
+                    
+                    Section{
+                        //Text(" \(Int(batteryInfo.batteryLevel * 100))%")
+                        Text(isCharging ? "充電中" : "充電していません")
+                    }
+                header: {
+                    Text("充電状況")
                 }
-            header: {
-                Text("バッテリー状況")
+                    
+                    Section{
+                        Text(" \(Int(batteryInfo.batteryLevel * 100))%")
+                        //Text(isCharging ? "充電中" : "充電していません")
+                    }
+                header: {
+                    Text("バッテリー状況")
+                }
+                footer: {
+                    Text("バッテリー駆動時間と充電サイクルは使用方法および設定によって異なります。iPhoneのバッテリーの修理またはリサイクルは、AppleまたはAppleの正規サービスプロバイダのみが行う必要があります。")
+                }
+                    
+                .listStyle(.automatic)
             }
-            footer: {
-                Text("バッテリー駆動時間と充電サイクルは使用方法および設定によって異なります。iPhoneのバッテリーの修理またはリサイクルは、AppleまたはAppleの正規サービスプロバイダのみが行う必要があります。")
-            }
-                
-            }
-            .listStyle(.automatic)
 
             .navigationTitle("診断結果")
         }
