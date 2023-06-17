@@ -39,6 +39,7 @@ class BatteryInfo: ObservableObject {
 struct ContentView: View {
     @ObservedObject var batteryInfo = BatteryInfo()
     let telephonyInfo = CTTelephonyNetworkInfo()
+    let phoneNumber = "0120277535" // 電話番号を指定
     var body: some View {
         VStack {
 
@@ -84,14 +85,30 @@ struct ContentView: View {
                         //Text(isCharging ? "充電中" : "充電していません")
                     }
                 header: {
-                    Text("バッテリー状況")
+                    Text("バッテリー残量")
                 }
                 footer: {
                     Text("バッテリー駆動時間と充電サイクルは使用方法および設定によって異なります。iPhoneのバッテリーの修理またはリサイクルは、AppleまたはAppleの正規サービスプロバイダのみが行う必要があります。")
                 }
+                    Section{
+                        Button(action: {
+                                        guard let phoneURL = URL(string: "tel://\(phoneNumber)") else { return }
+                                        UIApplication.shared.open(phoneURL)
+                                    }) {
+                                        Text("Appleサポートに連絡")
+                                    }
+                    }
+                header: {
+                    Text("Apple Care")
+                }
+                footer: {
+                    Text("Apple アドバイザー (サポート担当スペシャリスト) と直接話がしたい場合は、Apple サポートまでお電話ください。")
+                }
+                    
                     
                 .listStyle(.automatic)
             }
+            
 
             .navigationTitle("診断結果")
         }
