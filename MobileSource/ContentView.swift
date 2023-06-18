@@ -47,7 +47,7 @@ struct ContentView: View {
                     Section{
                         //Text("OS: \(batteryInfo.systembuildName)")
                         Text("\(batteryInfo.systembuildName) \(batteryInfo.systemVersion)")
-                        //Text("モデル: \(batteryInfo.model)")
+                        Text("\(batteryInfo.buildNumber)")
                         
                     }
                 header: {
