@@ -56,6 +56,21 @@ struct ContentView: View {
                 footer: {
                     Text("最新バージョンの iOS／iPadOS ソフトウェアにアップグレードすると、最新の機能やセキュリティアップデートを利用できるほか、バグも修正されます。デバイスまたは国／地域によっては、利用できない機能もあります。バッテリーとシステムのパフォーマンスは、ネットワークの状況や個々の使用条件など、さまざまな要因に左右されるため、実際の結果は異なる場合があります。")
                 }
+                    
+                    Section{
+                        Button(action: {
+                                        openSettings()
+                                    }) {
+                                        Text("Open Settings")
+                                    }
+                    }
+                header: {
+                    Text("設定アプリ")
+                }
+                footer: {
+                    Text("iOS、iPadOSの設定はこちらから。")
+                }
+                    
                         Section{
                             Text("\(batteryInfo.identifierForVendor)")
                             
@@ -63,6 +78,7 @@ struct ContentView: View {
                     header: {
                         Text("UUID")
                     }
+                    
                     
                     
                     //                Section{
@@ -123,6 +139,12 @@ struct ContentView: View {
             return "不明"
         }
     }
+    func openSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
 }
 
 
